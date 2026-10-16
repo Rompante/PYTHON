@@ -21,10 +21,17 @@ for n in notas:
         aprovado += 1
     else:
         reprovado += 1
-        if n >= 16:
+    
+    if n >= 16:
             superior += 1
 
 
 print("numero de aprovado: ", aprovado)
 print("numero de reprovado: ", reprovado)
 print("Quantos tiveram nota igual ou superior a 16? ", superior)
+print("media: ", media)
+print("maior: ", maior)
+print("menor: ", menor)
+
+prec_aprovados= (aprovado / len(notas)) * 100
+print(f"Percentagem de aprovados: {round(prec_aprovados,2)}")
