@@ -46,8 +46,8 @@ jogadores.append("J4") # ["J1","J2","J3","J4"]
 jogadores.extend(["J5","J6"]) # ["J1","J2","J3","J4","J5","J6"]
 
 nj = ["J7","J8"] # ["J1","J2","J3","J4","J5","J6","J7","J8"]
-
 jogadores.extend(nj)
+
 #Inserir um em uma posição específica
 jogadores.insert(2,"J9") # ["J1","J2","J9","J3","J4","J5","J6","J7","J8"]
 
@@ -106,10 +106,22 @@ nums_filtrados = [num for num in nums2 if 10 <= num <= 20]
 nums_filtrados2 = []
 for num in nums2:
     if 10 <= num <= 20:
-        if num % 2: # é par
+        if num % 2 == 0: # é par
             nums_filtrados2.append(num*2)
         else:
             nums_filtrados2.append(num)
 
 # [11,28,19]
 nums_filtrados3 = [num*2 if num % 2 else num for num in nums2 if 10 <= num <= 20]
+
+print(nums_filtrados3)
+
+frutas = ["morango", "banana" , "ameixa", "pera"]
+# Nº de caracteres de cada fruta
+lestras_frutas = [len (fruta) for fruta in frutas ]
+print(lestras_frutas)
+
+nome = "marcelo"
+print(nome)
+nome = list(nome)
+print(nome)
