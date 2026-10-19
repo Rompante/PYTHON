@@ -36,3 +36,37 @@ media = soma / len(nums)
 #         print(nums[indice], end=" ")
 
 #copiar uma lista 
+
+jogadores =  ["J1","J2","J3"]
+
+# Inserir um jogador
+jogadores.append("J4") # ["J1","J2","J3","J4"]
+# Inserir vários
+jogadores.extend(["J5","J6"]) # ["J1","J2","J3","J4","J5","J6"]
+nj = ["J7","J8"] # ["J1","J2","J3","J4","J5","J6","J7","J8"]
+jogadores.extend(nj)
+#Inserir um em uma posição específica
+jogadores.insert(2,"J9") # ["J1","J2","J9","J3","J4","J5","J6","J7","J8"]
+# Remover o último jogador
+jogadores.pop() # ["J1","J2","J9","J3","J4","J5","J6","J7"]
+# Remover um jogador em uma posição específica
+jogadores.pop(4) # ["J1","J2","J9","J3","J5","J6","J7"]
+# Remover o jogador pelo nome
+jogadores.remove("J6") # ["J1","J2","J9","J3","J5","J7"]
+# Saber o nº de jogadores
+y = len(jogadores) # 6
+# Copiar uma lista
+lista1 = [1,2,3]
+lista2 = lista1 # As listas ficam ligadas
+print(lista1,lista2)
+lista1.append(5)
+print(lista1,lista2)
+lista3 = lista1.copy() # As listas são independentes
+lista1.append(7)
+print(lista1, lista2, lista3)
+# Ordenar
+lista1.sort()
+# Ordenar descendentemente
+lista1.sort(reverse=True)
+# Inverter a lista
+lista1.reverse()
