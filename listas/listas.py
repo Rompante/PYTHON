@@ -34,3 +34,5 @@ media = soma / len(nums)
 # for indice in range(len(nums)):
 #     if nums[indice] <= 10:
 #         print(nums[indice], end=" ")
+
+#copiar uma lista 
