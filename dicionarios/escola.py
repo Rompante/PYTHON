@@ -58,6 +58,7 @@ for aluno in escola.values():
 media_idade_alunos = round(soma_idades / len(escola), 2)
 print(media_idade_alunos)
 
+
 # Imprima o nome do aluno e a média
 
 
@@ -69,7 +70,15 @@ for aluno in escola.values():
     notas_aluno = []
     for nota in aluno["notas"].values():
         notas_aluno.append(nota)
-    media_nota_alunos = round(sum(notas_aluno) / len(notas_aluno), 2)
-    print(f"Aluno(a) {nome_aluno} teve Média de {media_nota_alunos} valores")
 
+media_nota_alunos = round(sum(notas_aluno) / len(notas_aluno), 2)
+print(f"Aluno(a) {nome_aluno} teve Média de {media_nota_alunos} valores")
 
+#alunos do porto
+escola_porto = {}
+for  chave, valor in escola.items():
+    if valor["cidade"] == "Porto":
+        escola_porto[chave] = valor
+
+# Dictionary Comprehension
+escola_porto2 = {chave: valor for chave, valor in escola.items() if valor["cidade"] == "Porto"}
