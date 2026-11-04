@@ -94,8 +94,8 @@ while True:
                 # Substitui a quantidade antiga pela nova quantidade introduzida
                 livro_encontrado["quantidade"] = nova_quantidade
 
-                # Informa o utilizador de que a atualização foi realizada com sucesso
-                print("Quantidade atualizada com sucesso.")
+                # Informa o utilizador de que a atualização foi realizada com sucesso imprime o id do livro atualizado
+                print(f"Livro com ID {id_atualizar} atualizado com sucesso.")
 
             # Caso o livro não seja encontrado
             else:
