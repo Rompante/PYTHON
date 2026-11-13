@@ -1,7 +1,7 @@
 import random
 
 # Constantes do jogo
-VIDA_MAXIMA_POCAO = 100   # a poção nunca ultrapassa os 100 pontos de vida
+VIDA_MAXIMA_POCAO = 300   # a poção nunca ultrapassa os 300 pontos de vida
 CURA_POCAO = 25           # pontos de vida recuperados por poção
 
 
@@ -126,7 +126,45 @@ def usar_pocao(jogador):
     elif jogador["vida"] >= VIDA_MAXIMA_POCAO:
         print(f"Já tens {VIDA_MAXIMA_POCAO} ou mais pontos de vida, não podes usar poção.")
     else:
-        # Recupera 25 pontos sem ultrapassar os 100
+        # Recupera 25 pontos sem ultrapassar os 300
         jogador["vida"] = min(VIDA_MAXIMA_POCAO, jogador["vida"] + CURA_POCAO)
         jogador["pocoes"] -= 1
         print(f"Usaste uma poção! Vida atual: {jogador['vida']} | Poções restantes: {jogador['pocoes']}")
+
+
+def jogar():
+    titulo()
+    jogador = criar_jogador()
+    inimigos = criar_inimigos()
+
+    while True:
+        opcao = menu()
+
+        if opcao == 1:
+            if not inimigos_vivos(inimigos):
+                print("Todos os inimigos foram derrotados!")
+                break
+            atacar_inimigo(jogador, inimigos)
+        elif opcao == 2:
+            consultar_estado(jogador, inimigos)
+        elif opcao == 3:
+            listar_inimigos(inimigos)
+        elif opcao == 4:
+            usar_pocao(jogador)
+        elif opcao == 5:
+            print("Fugiste da batalha.")
+            break
+        else:
+            print("Opção inválida.")
+
+        if jogador["vida"] <= 0:
+            print("Ficaste sem vida. Fim de jogo!")
+            break
+
+        if not inimigos_vivos(inimigos):
+            print(f"Parabéns! Derrotaste todos os inimigos e conquistaste {jogador['pontos']} pontos.")
+            break
+
+
+if __name__ == "__main__":
+    jogar()
