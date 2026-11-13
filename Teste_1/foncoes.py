@@ -3,7 +3,6 @@ VIDA_MAXIMA_POCAO = 100
 CURA_POCAO = 25
 
 def criar_jogador():
-    # Dicionário com os dados do jogador
     return {
         "vida": 300,
         "ataque": 20,
@@ -34,7 +33,6 @@ def menu():
 
 
 def criar_inimigos():
-    # Lista de dicionários com os tipos de inimigo
     tipos = [
         {"nome": "Goblin", "vida": 40, "ataque": 8, "pontos": 100},
         {"nome": "Orc", "vida": 55, "ataque": 11, "pontos": 200},
@@ -43,12 +41,10 @@ def criar_inimigos():
         {"nome": "Dragão", "vida": 100, "ataque": 20, "pontos": 500}
     ]
 
-    # Seleciona aleatoriamente entre 3 e 5 inimigos
     quantidade = random.randint(3, 5)
     inimigos = []
-    for _ in range(quantidade):
-        # dict() faz uma cópia, para cada inimigo ter a sua própria vida
-        inimigos.append(dict(random.choice(tipos)))
+    for tipo in random.sample(tipos, quantidade):
+            inimigos.append(dict(tipo))
     return inimigos
 
 
