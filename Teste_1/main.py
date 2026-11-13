@@ -1,4 +1,4 @@
-import random
+import os
 from foncoes import menu,inimigos_vivos,atacar_inimigo,consultar_estado,listar_inimigos,usar_pocao,criar_jogador,criar_inimigos
 
 jogador = criar_jogador()
