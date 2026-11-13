@@ -20,6 +20,8 @@
 # ▪ Relatório de Stock: Implementar uma função que calcule e exiba o valor total
 # do inventário
 
+livro = []
+
 def menu():
     print("\n========================================")
     print("          SISTEMA DE INVENTÁRIO         ")
@@ -36,3 +38,12 @@ def menu():
     op = int(input("Escolha a opção: "))
 
     return op
+
+def atualizar_stock(id_pesquisa, inventario):
+    encontrei = False
+    for livro in inventario:
+        if livro ["id"] == id_pesquisa:
+            livro["qtde"] = int(input("Digite o stock atualizado: "))
+            encontrei = True 
+    if not encontrei:
+        print("Não econtrei o ")
