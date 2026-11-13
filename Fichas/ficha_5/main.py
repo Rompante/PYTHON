@@ -1,5 +1,5 @@
 import os
-from functions import add, update_final_price, print_product, menu
+from Fichas.ficha_5.functions import add, update_final_price, print_product, menu
 
 #2. Crie uma lista vazia denominada products.
 products = []
