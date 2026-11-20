@@ -16,6 +16,8 @@ while True:
             search_by_author_or_title(livros)
         case 6:
             report(livros)
+        case 8:
+            break
         case 7:
             break
 
