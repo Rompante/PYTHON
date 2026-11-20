@@ -17,7 +17,7 @@ while True:
         case 6:
             report(livros)
         case 8:
-            break
+            visualizar_log()
         case 7:
             break
 
