@@ -1,3 +1,19 @@
+from time import sleep
+from os import system
+from datetime import datetime
+
+def registar_log(mensagem):
+    data = datetime.now
+    return f""
+
+def meu_decorador(funcao):
+    def wrapper(*args, **kwargs):
+        funcao(*args, **kwargs)
+        sleep(3)
+        system("cls")
+    return wrapper
+
+@meu_decorador 
 def view(inventario):
     if len(inventario) == 0:
         print("Não há livros no inventário atual!")
@@ -12,6 +28,7 @@ def novo_id(inventario):
         return 1
     return inventario[len(inventario)-1]["id"] + 1
 
+@meu_decorador 
 def add(inventario: list):
     print("DADOS DO LIVRO\n")
     titulo = input("Título: ")
@@ -22,6 +39,7 @@ def add(inventario: list):
     livro = {"id": novo_id(inventario), "titulo": titulo, "autor": autor, "qtde": stock, "preco": preco}
     inventario.append(livro)
 
+@meu_decorador 
 def update_stock(inventario):
     found = False
     id_search = int(input("Digite o id do livro para atualização do stock: "))
@@ -34,6 +52,7 @@ def update_stock(inventario):
     if not found:
         print("Não existe nenhum livro em stock com o id indicado")
 
+@meu_decorador 
 def remove(inventario: list):
     found = False
     id_search = int(input("Digite o id do livro para remoção do inventário: "))
@@ -45,6 +64,7 @@ def remove(inventario: list):
     if not found:
         print("Não existe nenhum livro em stock com o id indicado")
 
+@meu_decorador
 def search_by_author_or_title(inventario: list):
     found = False
     search = input("Digite o nome do livro ou do autor: ")
@@ -57,6 +77,7 @@ def search_by_author_or_title(inventario: list):
     if not found:
         print("Não existe nenhum livro em stock com o id indicado") 
 
+@meu_decorador 
 def report(inventario):
     valor_inventario = 0
     for livro in inventario:
