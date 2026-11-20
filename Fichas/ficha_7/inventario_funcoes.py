@@ -1,21 +1,11 @@
+from genericpath import exists
 from time import sleep
-from os import system, path
+from os import system
 from datetime import datetime
+import json
 
-ficheiro_log = "inventario.log"
-
-def visualizar_log():
-    if not path.exists(ficheiro_log):
-        print("O ficheiro nao existe.")
-    else:
-        with open(ficheiro_log, "r") as f:
-            conteudo = f.readlines()
-            for linha in conteudo:
-                print(linha.strip())
-
-def registar_log(mensagem):
-    data = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-    return f"[{data}] - {mensagem}\n"
+ficheiro_log = "Ficha6-7/inventario.log"
+ficheiro_json = "Ficha6-7/inventario.json"
 
 def meu_decorador(funcao):
     def wrapper(*args, **kwargs):
@@ -24,8 +14,40 @@ def meu_decorador(funcao):
         system("cls")
     return wrapper
 
+def guardar_json(inventario):
+    with open(ficheiro_json, "w") as f:
+        json.dump(inventario, f, indent=4)
+
+def carregar_json():
+    if not exists(ficheiro_json):
+        print("Ficheiro não encontrado... ")
+        return []
+    else:
+        with open(ficheiro_json, "r") as f:
+            inventario = json.load(f)
+            print("Inventário carregado com sucesso!")
+            return inventario
+
 @meu_decorador
-def view(inventario):
+def visualizar_log() -> None:
+    """
+    Função que permite visualizar o conteúdo do ficheiro de log.
+    """
+    if not exists(ficheiro_log):
+        print("Ficheiro não encontrado... ")
+    else:
+        with open(ficheiro_log, "r") as f:
+            conteudo = f.readlines()
+            for linha in conteudo:
+                print(linha.strip())    
+
+def registrar_log(mensagem):
+    data = datetime.now()
+    data = data.now().strftime("%d-%m-%Y, %H:%M:%S")
+    return f"{data} - {mensagem}\n"
+
+@meu_decorador
+def view(inventario:list):
     if len(inventario) == 0:
         print("Não há livros no inventário atual!")
     else:
@@ -49,9 +71,10 @@ def add(inventario: list):
 
     livro = {"id": novo_id(inventario), "titulo": titulo, "autor": autor, "qtde": stock, "preco": preco}
     inventario.append(livro)
-    with open(ficheiro_log,"a") as f:
-        mensagem = f"Livro adicionado com sucesso: {titulo} ({livro["id"]})"
-        f.write(registar_log(mensagem))
+    with open(ficheiro_log, "a") as f:
+        mensagem = f"Livro adicionado com sucesso: {titulo} ({livro['id']})"
+        f.write(registrar_log(mensagem))
+    guardar_json(inventario)
 
 @meu_decorador
 def update_stock(inventario):
@@ -63,9 +86,10 @@ def update_stock(inventario):
             new_stock = int(input("Stock atual: "))
             livro["qtde"] = new_stock
             found = True
-            with open(ficheiro_log,"a") as f:
-                mensagem = f"Stock atualizado: {livro["titulo"]} ({livro["id"]}); Qtde anterior: {stock_anterior}; Qtde atual: {new_stock}   "
-                f.write(registar_log(mensagem))
+            with open(ficheiro_log, "a") as f:
+                mensagem = f"Stock atualizado: {livro['titulo']} ({livro['id']}); Stock anterior: {stock_anterior}; Stock novo: {new_stock}"
+                f.write(registrar_log(mensagem))
+            guardar_json(inventario)
             break
     if not found:
         print("Não existe nenhum livro em stock com o id indicado")
@@ -78,9 +102,10 @@ def remove(inventario: list):
         if livro["id"] == id_search:
             inventario.remove(livro)
             found = True
-            with open(ficheiro_log,"a") as f:
-                mensagem = f"Livro removido: {livro["titulo"]} ({livro["id"]})"
-                f.write(registar_log(mensagem))
+            with open(ficheiro_log, "a") as f:
+                mensagem = f"Livro Removido: {livro['titulo']} ({livro['id']});"
+                f.write(registrar_log(mensagem))
+            guardar_json(inventario)
             break
     if not found:
         print("Não existe nenhum livro em stock com o id indicado")
@@ -113,7 +138,8 @@ def menu():
     print("4- Remover livro")
     print("5- Pesquisar livros por autor ou título")
     print("6- Valor atual em stock")
-    print("7- Consultar histórico de operações")
-    print("8- Sair")
+    print("7- Consultar log")
+    print("8- Carregar inventário")
+    print("9- Sair")
     op = int(input("\nEscolha uma opção: "))
     return op
