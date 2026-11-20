@@ -1,8 +1,17 @@
 from time import sleep
-from os import system
+from os import system, path
 from datetime import datetime
 
 ficheiro_log = "inventario.log"
+
+def visualizar_log():
+    if not path.exists(ficheiro_log):
+        print("O ficheiro nao existe.")
+    else:
+        with open(ficheiro_log, "r") as f:
+            conteudo = f.readlines()
+            for linha in conteudo:
+                print(linha.strip())
 
 def registar_log(mensagem):
     data = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
@@ -104,6 +113,7 @@ def menu():
     print("4- Remover livro")
     print("5- Pesquisar livros por autor ou título")
     print("6- Valor atual em stock")
-    print("7- Sair")
+    print("7- Consultar histórico de operações")
+    print("8- Sair")
     op = int(input("\nEscolha uma opção: "))
     return op
