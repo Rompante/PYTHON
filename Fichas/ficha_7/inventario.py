@@ -1,4 +1,5 @@
-from inventario_funcoes import *
+from Fichas.ficha_7.inventario_funcoes import *
+
 livros = []
 
 while True:
@@ -19,8 +20,9 @@ while True:
         case 7:
             visualizar_log()
         case 8:
-            carregar_json()
+            livros = carregar_json()
         case 9:
             break
 
 print("Aplicação finalizada!")
+    
